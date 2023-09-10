@@ -1,0 +1,23 @@
+syntax = "proto3";
+package webmote;
+
+option go_package = "pkg/data/gen";
+
+message Negotiation {
+  string type = 1;
+  string sdp = 2;
+}
+
+message IceCandidate {
+  string candidate = 1;
+  string sdpMid = 2;
+  uint32 sdpMLineIndex = 3;
+  string usernameFragment = 4;
+}
+
+message SignalingMessage {
+  oneof signaling {
+    Negotiation negotiation = 1;
+    IceCandidate iceCandidate = 2;
+  }
+}

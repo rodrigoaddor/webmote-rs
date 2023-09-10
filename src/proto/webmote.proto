@@ -1,0 +1,44 @@
+syntax = "proto3";
+package webmote;
+
+option go_package = "pkg/data/gen";
+
+enum Button {
+  START = 0;
+  BACK = 1;
+  LEFT_THUMB = 2;
+  RIGHT_THUMB = 3;
+  LEFT_SHOULDER = 4;
+  RIGHT_SHOULDER = 5;
+  GUIDE = 6;
+  A = 7;
+  B = 8;
+  X = 9;
+  Y = 10;
+}
+
+enum Axis {
+  left = 0;
+  right = 1;
+  leftTrigger = 2;
+  rightTrigger = 3;
+  dpad = 4;
+}
+
+message ButtonUpdate {
+  Button name = 1;
+  bool pressed = 2;
+}
+
+message AxisUpdate {
+  Axis name = 1;
+  float x = 2;
+  float y = 3;
+}
+
+message Update {
+  oneof update {
+    ButtonUpdate button = 1;
+    AxisUpdate axis = 2;
+  }
+}
